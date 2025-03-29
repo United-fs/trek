@@ -1,3 +1,297 @@
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #A500D8;
+  --secondary: #1A3D9A;
+  --accent: #FF5630;
+  --muted: rgba(255, 255, 255, 0.7);
+  --card: rgba(255, 255, 255, 0.08);
+  --card-hover: rgba(255, 255, 255, 0.12);
+  --neon-purple: #BF00FF;
+  --neon-blue: #1F51FF;
+  --neon-glow-purple: rgba(191, 0, 255, 0.7);
+  --neon-glow-blue: rgba(31, 81, 255, 0.7);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+@keyframes shine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes neon-pulse-simple {
+  0%, 100% {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--glow-color), 0 0 20px var(--glow-color);
+    opacity: 0.9;
+  }
+  50% {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--glow-color), 0 0 40px var(--glow-color);
+    opacity: 1;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--foreground) 0%, rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Selection color */
+::selection {
+  background: var(--primary);
+  color: var(--foreground);
+}
+
+/* White border glow effect */
+.white-glow {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Floating element common styles */
+.floating-element {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 -6px 10px rgba(255, 255, 255, 0.05),
+    0 3px 6px rgba(0, 0, 0, 0.3) inset,
+    0 -3px 6px rgba(255, 255, 255, 0.05) inset;
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+  box-shadow: 
+    0 20px 40px -20px rgba(99, 102, 241, 0.5),
+    0 10px 20px -10px rgba(99, 102, 241, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.button-primary {
+  background-color: #BF00FF; /* Neon Purple */
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid #BF00FF;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  box-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 15px rgba(31, 81, 255, 0.7), /* Neon Blue Glow */
+    0 0 25px rgba(31, 81, 255, 0.7),
+    0 0 35px rgba(31, 81, 255, 0.7);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+.button-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  background-color: #d84dff; /* Lighter Purple on Hover */
+  border-color: #d84dff;
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(31, 81, 255, 0.8),
+    0 0 35px rgba(31, 81, 255, 0.8);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+.button-secondary {
+  background-color: #1F51FF; /* Neon Blue */
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid #1F51FF;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  box-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 15px rgba(191, 0, 255, 0.7), /* Neon Purple Glow */
+    0 0 25px rgba(191, 0, 255, 0.7),
+    0 0 35px rgba(191, 0, 255, 0.7);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+.button-secondary:hover {
+  transform: translateY(-3px) scale(1.03);
+  background-color: #4d7aff; /* Lighter Blue on Hover */
+  border-color: #4d7aff;
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(191, 0, 255, 0.8),
+    0 0 35px rgba(191, 0, 255, 0.8);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+.button-secondary:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.2rem;
+  background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-blue) 100%);
+  box-shadow: 
+    0 10px 20px -5px rgba(99, 102, 241, 0.5),
+    0 5px 10px -5px rgba(99, 102, 241, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.icon-container:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 15px 30px -5px rgba(99, 102, 241, 0.6),
+    0 10px 20px -5px rgba(99, 102, 241, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.icon-container::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+  filter: blur(10px);
+  z-index: -1;
+  opacity: 0.5;
+  animation: pulse-glow 2s infinite;
+  border-radius: 1.2rem;
+}
+
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+.glow {
+  position: relative;
+}
+
+.glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+  filter: blur(15px);
+  z-index: -1;
+  opacity: 0.5;
+  animation: pulse-glow 2s infinite;
+}
+
+.feature-card {
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  background: var(--card-hover);
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--neon-purple);
+  animation: border-glow 2s infinite;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shine 3s infinite;
+  transform: skewX(-15deg);
+  pointer-events: none;
+  filter: blur(3px);
+}
+
+.nav-blur {
+  background: rgba(10, 11, 15, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +329,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.float-medium {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: float 4s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+.pulse-on-hover {
+  transition: transform 0.3s ease;
+}
+
+.pulse-on-hover:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
